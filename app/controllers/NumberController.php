@@ -53,7 +53,7 @@ class NumberController extends BaseController {
 		if ($number <= 0)
 		{
 			$wordForm = $ones[0];
-			return Response::json(array('number' => $number, 'words' => $wordForm));
+			return Response::json(array('number' => intval($number), 'words' => $wordForm));
 		}
 		else
 		{
@@ -100,7 +100,7 @@ class NumberController extends BaseController {
 
 			$wordFormat = implode(' ', array_reverse($words));
 
-			return Response::json(array('number' => $number, 'words' => $wordFormat));
+			return Response::json(array('number' => intval($number), 'words' => $wordFormat));
 		}
 	}
 
