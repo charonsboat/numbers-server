@@ -12,3 +12,7 @@ This is the generated json output when passed a get parameter of ```1337```
 ```json
 {"number":1337,"words":"one thousand three hundred thirty-seven"}
 ```
+
+authors
+=======
+David Myers (drmyersii)
