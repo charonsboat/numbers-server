@@ -10,9 +10,9 @@ class NumberController extends BaseController {
 	public function index($number)
 	{
 		$Numbers = new Numbers();
-		$words = $Numbers->GenerateWords($number);
+		$words = $Numbers->Words($number);
 
-		return Response::json(array('number' => $number, 'words' => $words));
+		return Response::json($words);
 	}
 
 }
