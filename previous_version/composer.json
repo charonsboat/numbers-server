@@ -1,7 +1,0 @@
-{
-	"require": {
-		"php": ">=5.3",
-		"drmyersii/numbers": "@dev",
-		"laravel/framework": "4.1.*"
-	}
-}
