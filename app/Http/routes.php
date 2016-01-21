@@ -18,14 +18,19 @@ $app->get('/', function () use ($app) {
 // - /api - All Endpoints for the API
 $app->group([ 'prefix' => '/api' ], function () use ($app)
 {
-    // - /api/v1 - Version One Endpoints for the API
-    $app->group([ 'prefix' => '/v1' ], function () use ($app)
-    {
-        // - /api/v1/number - Number Endpoints for the API
-        $app->group([ 'prefix' => '/number' ], function () use ($app)
-        {
-            // - /api/v1/number/{number} - GET Endpoint for the Numbers API
-            $app->get('/{number:[0-9]+}', 'NumberController@index');
-        });
-    });
+    $app->get('/', function () { return '/api'; });
+});
+
+// - /api/v1 - Version One Endpoints for the API
+$app->group([ 'prefix' => '/api/v1' ], function () use ($app)
+{
+    $app->get('/', function () { return '/api/v1'; });
+});
+
+// - /api/v1/number - Number Endpoints for the API
+$app->group([ 'prefix' => '/api/v1/number' ], function () use ($app)
+{
+    $app->get('/', function () { return '/api/v1/number'; });
+    // - /api/v1/number/{number} - GET Endpoint for the Numbers API
+    $app->get('/{number:[0-9]+}', 'NumberController@index');
 });
