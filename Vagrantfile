@@ -104,7 +104,7 @@ Vagrant.configure(2) do |config|
         args_php_version = "5.6"
 
         # @param: list of php packages to install, note: if using PhpBrew, make sure you use the available variants. E.g. "+default +fpm +gd". For more info, check the cookbook: https://github.com/phpbrew/phpbrew/wiki/Cookbook
-        args_php_package_list = "php5-common php5-mcrypt php5-fpm"
+        args_php_package_list = "php5-common php5-mcrypt php5-fpm php5-gmp"
 
         # @param: (optional) user to run php-fpm as, note: if left blank, user will be left as default
         args_php_user = "vagrant"
@@ -137,4 +137,25 @@ Vagrant.configure(2) do |config|
 
         # call nginx provisioner
         config.vm.provision :shell, privileged: false, path: "#{scripts_url}/nginx", args: [ args_nginx_document_root, args_nginx_hostname, args_nginx_ip_address, args_nginx_user, args_nginx_group ]
+
+
+        ####
+        ## Local/Inline Scripts
+        ######
+
+
+        ####
+        ## .env
+        ####
+
+        # call .env provisioner
+        config.vm.provision :shell, privileged: false, inline: "cd /vagrant && if [ ! -f \"./.env\" ]; then cp .env.example .env; fi"
+
+
+        ####
+        ## composer
+        ####
+
+        # call composer provisioner
+        config.vm.provision :shell, privileged: false, inline: "export DEBIAN_FRONTEND=noninteractive && curl -sS https://getcomposer.org/installer | php && sudo -E mv composer.phar /usr/local/bin/composer && cd /vagrant && composer install"
 end
