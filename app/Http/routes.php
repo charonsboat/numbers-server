@@ -32,5 +32,5 @@ $app->group([ 'prefix' => '/api/v1/number' ], function () use ($app)
 {
     $app->get('/', function () { return '/api/v1/number'; });
     // - /api/v1/number/{number} - GET Endpoint for the Numbers API
-    $app->get('/{number:[0-9]+}', 'NumberController@index');
+    $app->get('/{number:[0-9]+}', 'App\Http\Controllers\NumberController@index');
 });
