@@ -1,9 +1,9 @@
 <?php
 
-use drmyersii\Numbers;
-
-
 namespace App\Http\Controllers;
+
+use drmyersii\Numbers;
+use Illuminate\Http\Response;
 
 class NumberController extends Controller
 {
@@ -23,6 +23,6 @@ class NumberController extends Controller
         $Numbers = new Numbers();
 		$words = $Numbers->Words($number);
 
-		return Response::json($words);
+		return response()->json($words);
     }
 }
