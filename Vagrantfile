@@ -12,7 +12,7 @@
 # fork it and change the following to reflect your own copy
 gh_user   = "drmyersii"
 gh_repo   = "vagrant-env-basher"
-gh_branch = "v0.2.0" # if you want to ensure consistency, use a specific tag (e.g. v0.1.0)
+gh_branch = "v0.3.1" # if you want to ensure consistency, use a specific tag (e.g. v0.1.0)
 gh_url    = "https://raw.githubusercontent.com/#{gh_user}/#{gh_repo}/#{gh_branch}"
 
 # path to provisioning scripts
@@ -156,6 +156,9 @@ Vagrant.configure(2) do |config|
         ## composer
         ####
 
-        # call composer provisioner
-        config.vm.provision :shell, privileged: false, inline: "export DEBIAN_FRONTEND=noninteractive && curl -sS https://getcomposer.org/installer | php && sudo -E mv composer.phar /usr/local/bin/composer && cd /vagrant && composer install"
+        # @param: (optional) location to run `composer install`
+        args_composer_install_dir = "/vagrant"
+
+        # call nginx provisioner
+        config.vm.provision :shell, privileged: false, path: "#{scripts_url}/composer", args: [ args_composer_install_dir ]
 end
